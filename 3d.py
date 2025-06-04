@@ -3,7 +3,7 @@ import pandas as pd
 from scipy.interpolate import griddata
 import plotly.graph_objects as go
 
-# === Step 1: Load and interpolate DEM from .dat ===
+# === Load and interpolate DEM from .dat ===
 cols = [
     'line', 'dateCode', 'flight', 'survey', 'FID',
     'altitude', 'bearing', 'gpshgt', 'ground', 'lasalt',
@@ -23,7 +23,7 @@ points = df[['longitude', 'latitude']].values
 values = df['ground'].values
 terrain_data = griddata(points, values, (lon_grid, lat_grid), method='linear')
 
-# === Step 2: Define major cities ===
+# === Define major cities ===
 cities = {
     "Brisbane": {"lat": -27.4550, "lon": 153.0351},
     "Gold Coast": {"lat": -28.0815, "lon": 153.4482},
@@ -41,7 +41,7 @@ city_label_zs = [
     for name in city_names
 ]
 
-# === Step 3: Build plotly figure ===
+# === Build plotly figure ===
 fig = go.Figure()
 
 # Terrain surface

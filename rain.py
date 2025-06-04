@@ -1,12 +1,10 @@
 import numpy as np
 import pandas as pd
-import rasterio
 from scipy.interpolate import griddata
 import plotly.graph_objects as go
-from pathlib import Path
 import xarray as xr
 
-# === Step 1: Load and interpolate DEM from your .dat file ===
+# === Load and interpolate DEM from your .dat file ===
 cols = [
     'line', 'dateCode', 'flight', 'survey', 'FID',
     'altitude', 'bearing', 'gpshgt', 'ground', 'lasalt',
@@ -27,7 +25,7 @@ points = df[['longitude', 'latitude']].values
 values = df['ground'].values
 terrain_data = griddata(points, values, (lon_grid, lat_grid), method='linear')
 
-# === Step 2: Load Daily Rainfall from NetCDF ===
+# === Load Daily Rainfall from NetCDF ===
 rain_nc_path = "data/2025.daily_rain.nc"
 ds = xr.open_dataset(rain_nc_path)
 
@@ -56,8 +54,7 @@ rain_cmax = np.percentile(all_rain_values, 99.5)  # Avoid extreme outliers
 # Base figure with terrain
 fig = go.Figure()
 
-# === Static base ===
-# 3D terrain
+# === Static base 3D terrain ===
 fig.add_trace(
     go.Surface(
         z=terrain_data,
@@ -91,7 +88,7 @@ for i, rain_surface in enumerate(rain_surfaces):
             colorscale='Blues_r',
             reversescale=True,
             opacity=0.6,
-            showscale=True,  # Only show colorbar on first frame
+            showscale=True,
             colorbar=dict(title='Rainfall Intensity (mm/day)')
         )
     )

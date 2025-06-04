@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 
-# ─── Constants ─────────────────────────────────────────────────────────────────
 CITY_COORDS = {
     "Brisbane":   {"lat": -27.4550, "lon": 153.0351},
     "Gold Coast": {"lat": -28.0815, "lon": 153.4482},
@@ -14,15 +13,12 @@ CITY_COORDS = {
 MAX_TEMP_FILE = "data/2025.max_temp.nc"
 MIN_TEMP_FILE = "data/2025.min_temp.nc"
 
-
-# ─── Helpers ────────────────────────────────────────────────────────────────────
 def find_nearest_grid_point(ds: xr.DataArray, target_lat: float, target_lon: float):
     lat_diff = np.abs(ds["lat"].values - target_lat)
     lon_diff = np.abs(ds["lon"].values - target_lon)
     i_lat = lat_diff.argmin()
     i_lon = lon_diff.argmin()
     return float(ds["lat"].values[i_lat]), float(ds["lon"].values[i_lon])
-
 
 def extract_time_series(
     max_ds: xr.Dataset,
@@ -33,7 +29,7 @@ def extract_time_series(
     max_var = list(max_ds.data_vars)[0]
     min_var = list(min_ds.data_vars)[0]
 
-    max_temp = max_ds[max_var]  # dims: (time, lat, lon)
+    max_temp = max_ds[max_var]
     min_temp = min_ds[min_var]
 
     time_index = pd.to_datetime(max_temp["time"].values)
@@ -53,7 +49,6 @@ def extract_time_series(
     }
 
 
-# ─── Main Function ──────────────────────────────────────────────────────────────
 def generate_temp_figure(
     city_name: str,
     max_temp_file: str = MAX_TEMP_FILE,
@@ -73,7 +68,7 @@ def generate_temp_figure(
 
     fig = go.Figure()
 
-    # Max Temp (solid red); no hovertemplate, so default shows date + value
+    # Max Temp (solid red)
     fig.add_trace(
         go.Scatter(
             x=times,
@@ -81,10 +76,10 @@ def generate_temp_figure(
             mode="lines",
             name="Max",
             line=dict(color="firebrick", width=2),
-            hoverinfo="x+y"  # default: show x (date) and y (value)
+            hoverinfo="x+y"
         )
     )
-    # Min Temp (dashed blue); same default hoverinfo
+    # Min Temp (dashed blue)
     fig.add_trace(
         go.Scatter(
             x=times,

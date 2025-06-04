@@ -3,7 +3,7 @@ import pandas as pd
 import xarray as xr
 import plotly.graph_objects as go
 
-# === Step 1: Load and interpolate DEM ===
+# === Load and interpolate DEM ===
 cols = [
     'line', 'dateCode', 'flight', 'survey', 'FID',
     'altitude', 'bearing', 'gpshgt', 'ground', 'lasalt',
@@ -18,7 +18,7 @@ num_points = 200
 lon_lin = np.linspace(df['longitude'].min(), df['longitude'].max(), num_points)
 lat_lin = np.linspace(df['latitude'].min(), df['latitude'].max(), num_points)
 
-# === Step 2: Load and interpolate solar radiation ===
+# === Load and interpolate solar radiation ===
 radiation_ds = xr.open_dataset("data/2025.radiation.nc")
 rad_var = list(radiation_ds.data_vars)[0]  # auto-detect variable
 radiation = radiation_ds[rad_var]
@@ -45,9 +45,9 @@ fixed_zmin = np.min([np.nanmin(surface) for surface in radiation_surfaces])
 fixed_zmax = np.max([np.nanmax(surface) for surface in radiation_surfaces])
 
 custom_colorscale = [
-    [0.0,  "rgb(70,130,180)"],    # steel blue
+    [0.0,  "rgb(70,130,180)"],    # steel blue (low radiation)
     [0.3,  "rgb(173,216,230)"],   # light blue
-    [0.5,  "rgb(255,255,150)"],   # soft warm yellow (less white)
+    [0.5,  "rgb(255,255,150)"],   # soft warm yellow
     [0.7,  "rgb(255,165,0)"],     # orange
     [1.0,  "rgb(255,69,0)"]       # red (high radiation)
 ]
@@ -60,8 +60,6 @@ city_locs = {
     "Cairns":     {"lon": 145.7633, "lat": -16.8878}
 }
 
-# === Plotting ===
-# Default to showing January
 # Preprocess hover text
 z_data = radiation_surfaces[0]
 custom_text = np.empty(z_data.shape, dtype=object)
@@ -82,6 +80,7 @@ for i in range(z_data.shape[0]):
                 f"Radiation: {val:.2f} MJ/m²"
             )
 
+# === Plotting ===
 initial_heat = go.Heatmap(
     z=z_data,
     x=lon_lin,
@@ -94,7 +93,6 @@ initial_heat = go.Heatmap(
     text=custom_text,
     hovertemplate="%{text}<extra></extra>"
 )
-
 
 fig = go.Figure(data=[initial_heat])
 
@@ -127,7 +125,6 @@ fig.update_layout(
                 "method": "update",
                 "args": [
                     {"z": [radiation_surfaces[i]]},
-                    # Keep all other properties (colorscale, city traces) unchanged
                     {"shapes": []}
                 ]
             } for i, label in enumerate(month_labels)
