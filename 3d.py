@@ -49,12 +49,8 @@ fig.add_trace(go.Surface(
     z=terrain_data,
     x=lon_lin,
     y=lat_lin,
-    colorscale=[
-        [0.0, '#2b83ba'],   # deep blue - ocean
-        [0.1, '#abdda4'],   # green - low land
-        [0.5, '#fdae61'],   # orange - mid
-        [1.0, '#d7191c']    # red - high elevation
-    ],
+    colorscale='Spectral',
+    reversescale=True,
     cmin=-60,
     cmax=np.nanmax(terrain_data),
     showscale=True,
@@ -78,7 +74,12 @@ fig.add_trace(go.Scatter3d(
     textposition='middle right',
     textfont=dict(color='black', size=10),
     showlegend=False,
-    name='Cities'
+    name='Cities',
+    hovertemplate=
+        "%{text}<br>" +
+        "Longitude: %{x:.4f}<br>" +
+        "Latitude: %{y:.4f}<br>" +
+        "Elevation: %{z:.2f} m<extra></extra>"
 ))
 
 # Layout
