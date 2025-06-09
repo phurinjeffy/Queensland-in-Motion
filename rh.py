@@ -81,6 +81,9 @@ def plot_seasonal_delta_rh(grouped_df, city_name):
     fig = go.Figure()
     for season in seasons:
         season_df = grouped_df[grouped_df["season"] == season]
+        hovertemplate = (
+            "%{y:.2f}%"
+        )
 
         fig.add_trace(go.Scatter(
             x=season_df["year"],
@@ -92,7 +95,8 @@ def plot_seasonal_delta_rh(grouped_df, city_name):
                 dash=dash_map[season],
                 color=color_map[season]
             ),
-            marker=dict(size=6, symbol="circle")
+            marker=dict(size=6, symbol="circle"),
+            hovertemplate=hovertemplate
         ))
 
     fig.update_layout(
@@ -104,10 +108,12 @@ def plot_seasonal_delta_rh(grouped_df, city_name):
         width=850,
         template="plotly_white",
         margin=dict(l=60, r=30, t=80, b=60),
+        hovermode="x unified",
+        font=dict(family="Arial", size=14),
     )
     fig.write_html(f"seasonal_delta_rh_{city_name.lower()}.html")
 
 if __name__ == "__main__":
-    city = "Brisbane"
-    seasonal_data = aggregate_seasonal_deltas(city)
-    plot_seasonal_delta_rh(seasonal_data, city)
+    for city in CITY_COORDS.keys():
+        seasonal_data = aggregate_seasonal_deltas(city)
+        plot_seasonal_delta_rh(seasonal_data, city)
