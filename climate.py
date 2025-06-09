@@ -82,7 +82,8 @@ def plot_climatology(climatology_df, city_name: str):
         mode="lines+markers",
         name="Max Temperature",
         line=dict(color=line_colors["max"], width=2, dash="solid"),
-        marker=dict(symbol="square", size=6)
+        marker=dict(symbol="square", size=6),
+        hovertemplate="%{y:.1f}°C<br>"
     ))
 
     # Mean Temp – dashed line
@@ -92,7 +93,8 @@ def plot_climatology(climatology_df, city_name: str):
         mode="lines+markers",
         name="Mean Temperature",
         line=dict(color=line_colors["mean"], width=2, dash="dash"),
-        marker=dict(symbol="circle", size=6)
+        marker=dict(symbol="circle", size=6),
+        hovertemplate="%{y:.1f}°C<br>"
     ))
 
     # Min Temp – dotted line
@@ -102,7 +104,8 @@ def plot_climatology(climatology_df, city_name: str):
         mode="lines+markers",
         name="Min Temperature",
         line=dict(color=line_colors["min"], width=2, dash="dot"),
-        marker=dict(symbol="triangle-up", size=6)
+        marker=dict(symbol="triangle-up", size=6),
+        hovertemplate="%{y:.1f}°C<br>"
     ))
 
     # Precipitation (bars, secondary axis)
@@ -112,11 +115,13 @@ def plot_climatology(climatology_df, city_name: str):
         name="Precipitation",
         marker_color="skyblue",
         yaxis="y2",
-        opacity=0.6
+        opacity=0.6,
+        hovertemplate="%{y:.1f} mm<br>"
     ))
 
     fig.update_layout(
         title=f"Monthly Temperature & Rainfall Patterns in {city_name} (2020–2024)",
+        hovermode="x unified",
         xaxis=dict(
             title="Month",
             tickmode="array",
