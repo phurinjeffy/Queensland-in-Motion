@@ -26,7 +26,7 @@ values = df['ground'].values
 terrain_data = griddata(points, values, (lon_grid, lat_grid), method='linear')
 
 # === Load Daily Rainfall from NetCDF ===
-rain_nc_path = "data/2025.daily_rain.nc"
+rain_nc_path = "data/rain/2025.daily_rain.nc"
 ds = xr.open_dataset(rain_nc_path)
 
 # Ensure proper variable names
