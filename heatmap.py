@@ -160,7 +160,10 @@ for i, (surface, label) in enumerate(zip(radiation_surfaces, month_labels)):
                 hovertemplate="%{text}<extra></extra>"
             )
         ],
-        name=label
+        name=label,
+        layout=go.Layout(
+            title_text=f"Average Monthly Solar Radiation in Queensland (2020-2024) - {label}"
+        )
     ))
     
 # Compass center point (adjust lon/lat as needed for top-right)
@@ -210,7 +213,7 @@ fig.add_trace(go.Scatter(
 fig.update(frames=frames)
 
 fig.update_layout(
-    title="Average Monthly Solar Radiation in Queensland (2020-2024)",
+    title=f"Average Monthly Solar Radiation in Queensland (2020-2024) - {month_labels[0]}",
     xaxis_title="Longitude",
     yaxis_title="Latitude",
     height=900,
