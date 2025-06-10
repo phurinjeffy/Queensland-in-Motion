@@ -57,6 +57,14 @@ fig.add_trace(go.Surface(
     colorbar=dict(title='Elevation (m)'),
     opacity=1.0,
     name='Digital Elevation Model',
+    lighting=dict(
+        ambient=0.4,
+        diffuse=0.7,
+        fresnel=0.2,
+        specular=0.3,
+        roughness=0.8
+    ),
+    lightposition=dict(x=lon_lin.min(), y=200, z=300),
     hovertemplate=
         "Longitude: %{x:.4f}<br>" +
         "Latitude: %{y:.4f}<br>" +
