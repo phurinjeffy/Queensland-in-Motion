@@ -41,7 +41,7 @@ fig.add_trace(go.Box(
 ))
 
 fig.update_layout(
-    title='Monthly Distribution of Actual and Potential Evapotranspiration at Brisbane Station',
+    title='Monthly Distribution of Actual and Potential Evapotranspiration at Brisbane Station (2020-2024)',
     xaxis_title='Month',
     yaxis_title='Evapotranspiration (mm)',
     boxmode='group',
