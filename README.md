@@ -7,11 +7,11 @@ Visual, interactive climate and terrain maps for Queensland, Australia, built wi
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/91739d67-664f-47be-8fa1-d8e26d10f6d9" width="300" alt="Rainfall over Terrain" />
+      <img src="https://github.com/user-attachments/assets/91739d67-664f-47be-8fa1-d8e26d10f6d9" width="400" alt="Rainfall over Terrain" />
       <br /><sub>3D Terrain Elevation (DEM)</sub>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/a7cc9324-596f-45d7-ae00-eda2a03c9c14" width="300" alt="Solar Radiation Heatmap" />
+      <img src="https://github.com/user-attachments/assets/a7cc9324-596f-45d7-ae00-eda2a03c9c14" width="350" alt="Solar Radiation Heatmap" />
       <br /><sub>Daily Rainfall over Terrain (3D, animated)</sub>
     </td>
     <td align="center">
@@ -29,7 +29,7 @@ Visual, interactive climate and terrain maps for Queensland, Australia, built wi
       <br /><sub>Evapotranspiration Boxplots</sub>
     </td>
     <td align="center" colspan="3">
-      <img src="https://github.com/user-attachments/assets/cf1dc66d-63cb-42f0-af20-2948d72249ea" width="450" alt="Seasonal ΔRH" />
+      <img src="https://github.com/user-attachments/assets/cf1dc66d-63cb-42f0-af20-2948d72249ea" width="300" alt="Seasonal ΔRH" />
       <br /><sub>Seasonal ΔRH (tmin − tmax)</sub>
     </td>
   </tr>
