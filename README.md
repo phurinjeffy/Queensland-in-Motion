@@ -2,6 +2,43 @@
 
 Visual, interactive climate and terrain maps for Queensland, Australia, built with Python, Plotly, Xarray, and SciPy.
 
+## Visual gallery
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/91739d67-664f-47be-8fa1-d8e26d10f6d9" width="300" alt="Rainfall over Terrain" />
+      <br /><sub>3D Terrain Elevation (DEM)</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/a7cc9324-596f-45d7-ae00-eda2a03c9c14" width="300" alt="Solar Radiation Heatmap" />
+      <br /><sub>Daily Rainfall over Terrain (3D, animated)</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/720682f4-0d58-4f45-be36-6669ee9b00f8" width="300" alt="Monthly Climatology" />
+      <br /><sub>Monthly Solar Radiation (animated heatmaps)</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e7ce985a-87a0-447a-8b65-4de36b49545c" width="300" alt="Evapotranspiration Boxplots" />
+      <br /><sub>Brisbane Monthly Climatology (Temp + Rain)</sub>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/5004c71e-5ef7-40e8-baa9-38b09597c56d" width="300" alt="Daily Temperatures" />
+      <br /><sub>Evapotranspiration Boxplots</sub>
+    </td>
+    <td align="center" colspan="3">
+      <img src="https://github.com/user-attachments/assets/cf1dc66d-63cb-42f0-af20-2948d72249ea" width="450" alt="Seasonal ΔRH" />
+      <br /><sub>Seasonal ΔRH (tmin − tmax)</sub>
+    </td>
+  </tr>
+  <tr>
+  </tr>
+  
+</table>
+
+
 ## Requirements
 
 - Python 3.9+
